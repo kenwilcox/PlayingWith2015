@@ -11,7 +11,7 @@ namespace PlayingWith2015
     {
         static void Main(string[] args)
         {
-            var me = new Person() { Name = "Ken", DOB = DateTime.Now.AddDays(-1), FavoriteFood = new List<string> { "Spicy", "Yummy" } };
+            var me = new Person() { Name = "Ken", DOB = DateTime.Now.AddDays(-1), FavoriteFood = new Food { Name = "Spicy"} };
             Console.WriteLine($"{me}");
 
             Console.ReadKey();
@@ -36,11 +36,11 @@ namespace PlayingWith2015
     {
         public string Name { get; set; }
         public DateTime DOB { get; set; }
-        public List<string> FavoriteFood { get; set; }
+        public Food FavoriteFood { get; set; }
+    }
 
-        public Person()
-        {
-            FavoriteFood = new List<string>();
-        }
+    class Food: MyObject
+    {
+        public string Name { get; set; }
     }
 }
