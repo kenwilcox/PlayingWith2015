@@ -14,6 +14,10 @@ namespace PlayingWith2015
             var me = new Person() { Name = "Ken", DOB = DateTime.Now.AddDays(-1), FavoriteFood = new Food { Name = "Spicy"} };
             Console.WriteLine($"{me}");
 
+            var age = 1;
+            var s = $"{me.Name} is {age} year{(age == 1? "": "s")} old";
+            Console.WriteLine(s);
+
             Console.ReadKey();
         }
     }
