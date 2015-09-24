@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace PlayingWith2015
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
-            var me = new Person() { Name = "Ken", DOB = DateTime.Now.AddDays(-1), FavoriteFood = new Food { Name = "Spicy"} };
+            var me = new Person() { Name = "Ken", Dob = DateTime.Now.AddDays(-1), FavoriteFood = new Food { Name = "Spicy"} };
             Console.WriteLine($"{me}");
 
-            var age = 1;
+            var age = int.Parse(args?[0] ?? "1");
             var s = $"{me.Name} is {age} year{(age == 1? "": "s")} old";
             Console.WriteLine(s);
 
@@ -22,13 +18,14 @@ namespace PlayingWith2015
         }
     }
 
-    class MyObject: Object
+    class MyObject: object
     {
         public override string ToString()
         {
             var ret = "";
-            foreach(PropertyInfo pi in this.GetType().GetProperties())
+            foreach(var pi in GetType().GetProperties())
             {
+                // Using the getter here that ReSharper can't "see"
                 var t = pi.GetValue(this).GetType();
                 ret += $"{pi.Name}:{t} == {pi.GetValue(this)}" + Environment.NewLine;
             }
@@ -39,7 +36,7 @@ namespace PlayingWith2015
     class Person: MyObject
     {
         public string Name { get; set; }
-        public DateTime DOB { get; set; }
+        public DateTime Dob { get; set; }
         public Food FavoriteFood { get; set; }
     }
 
